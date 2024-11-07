@@ -3,6 +3,7 @@ package in.chaithanya.Service;
 import java.io.File;
 import java.io.FileInputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,15 @@ public class UserService  {
 		 String imagePath="C:\\Users\\ADMIN\\OneDrive\\Documents\\Downloads\\durgadevi.jpg";	 
 		 User u=new User();
 		 //u.setUserId(100);
-		 u.setUserName("dhakshith");
-		 u.setUserEmail("chaitu@gmail.com");
-		 long size=Files.size(Paths.get(imagePath));
+		 u.setUserName("joswith");
+		 u.setUserEmail("joswith@gmail.com");
 		 
-		 byte[] arr=new byte[(int) size];
+		// long size=Files.size(Paths.get(imagePath));
+		// byte[] arr=new byte[(int) size];
+		 
+		 Path path = Paths.get(imagePath);
+		 byte[] arr = Files.readAllBytes(path);
+ 
 		 FileInputStream fis=new FileInputStream(new File(imagePath));
 		 fis.read(arr);
 		 fis.close();
@@ -34,8 +39,7 @@ public class UserService  {
 		 u.setUserImage(arr);
 		 userRep.save(u);
 		 
-		 
-		 
+		
 		 
 	 }
 	 
